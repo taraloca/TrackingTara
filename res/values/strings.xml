@@ -4,5 +4,6 @@
     <string name="app_name">Tracking Tara</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="tracking_tara">Tracking Tara</string>
 
 </resources>
