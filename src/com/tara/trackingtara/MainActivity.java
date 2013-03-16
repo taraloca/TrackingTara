@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.tara.trackingtara.utilities.Constants;
@@ -19,6 +20,9 @@ import com.tara.trackingtara.utilities.PartnerCoding;
 public class MainActivity extends Activity {
 	private boolean mIsFromLite = false;
 	private MainActivity mSelf;
+	private TextView mUtmSource;
+	private TextView mUtmMedium;
+	private TextView mUtmCampaign;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		Logger.i(this, "onCreate()");
 		mSelf = this;
+		
 	}
 
 	@Override
@@ -70,15 +75,16 @@ public class MainActivity extends Activity {
 				// Set Context before using EasyTracker. Note that the SDK will
 				// use the
 				// application context.
-//				EasyTracker.getInstance().setContext(mSelf);
-//				if (!TextUtils.isEmpty(campaign)) {
-//					EasyTracker.getTracker().setCampaign(campaign);
-//				}
-//				if (!TextUtils.isEmpty(referrer)) {
-//					EasyTracker.getTracker().setReferrer(referrer);
-//				}
+				// EasyTracker.getInstance().setContext(mSelf);
+				// if (!TextUtils.isEmpty(campaign)) {
+				// EasyTracker.getTracker().setCampaign(campaign);
+				// }
+				// if (!TextUtils.isEmpty(referrer)) {
+				// EasyTracker.getTracker().setReferrer(referrer);
+				// }
 			}
 		}
+		init();
 
 	}
 
@@ -87,6 +93,35 @@ public class MainActivity extends Activity {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
 		Logger.i(this, "partner code in TrackingTara is %s", PartnerCoding.getPartnerCode(mSelf));
+	}
+
+	private void init() {
+		mUtmSource = (TextView) findViewById(R.id.utmSourceValue);
+		mUtmMedium = (TextView) findViewById(R.id.utmMediumValue);
+		mUtmCampaign = (TextView) findViewById(R.id.utmCampaignValue);
+
+		Map<String, String> params = MarketUtils.retrieveReferralParams(mSelf);
+
+		String source = "";
+		String medium = "";
+		String campaign = "";
+
+		for (String key : Constants.REFERRER_EXPECTED_PARAMETERS) {
+			String value = params.get(key);
+			if (key.equals(Constants.ReferrerParameters.WithoutMarkup.UTM_SOURCE)) {
+				if (value != null) {
+					source = value;
+				}
+			} else if (key.equals(Constants.ReferrerParameters.WithoutMarkup.UTM_MEDIUM)) {
+				medium = value;
+			} else if (key.equals(Constants.ReferrerParameters.WithoutMarkup.UTM_CAMPAIGN)) {
+				campaign = value;
+			}
+		}
+		
+		mUtmSource.setText(source);
+		mUtmMedium.setText(medium);
+		mUtmCampaign.setText(campaign);
 	}
 
 }

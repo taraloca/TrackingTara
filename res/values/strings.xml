@@ -5,5 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="tracking_tara">Tracking Tara</string>
+    <string name="utm_source">UTM SOURCE: </string>
+    <string name="utm_medium">UTM MEDIUM: </string>
+    <string name="utm_campaign">UTM CAMPAIGN: </string>
 
 </resources>

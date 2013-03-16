@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.tara.trackingtara.utilities.Logger;
 import com.tara.trackingtara.utilities.MarketUtils;
 
 public class MyWidgetProvider extends AppWidgetProvider {
@@ -53,6 +54,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			Logger.i(this, "onReceive GoogleCampaignTrackingReceiver");
 			Bundle extras = intent.getExtras();
 
 			// Workaround for Android security issue:

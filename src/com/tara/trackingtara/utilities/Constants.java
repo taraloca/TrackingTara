@@ -41,7 +41,7 @@ public class Constants {
 
 		public static class WithoutMarkup {
 			public static final String REFERRER = "referrer";
-			public static final String UTM_SOURCE = "source";
+			public static final String UTM_SOURCE = "utm_source";
 			public static final String UTM_MEDIUM = "utm_medium";
 			public static final String UTM_CAMPAIGN = "utm_campaign";
 		}
