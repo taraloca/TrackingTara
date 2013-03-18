@@ -49,7 +49,48 @@ public class MyWidgetProvider extends AppWidgetProvider {
 			appWidgetManager.updateAppWidget(widgetId, remoteViews);
 		}
 	}
-	
+
+//	@Override
+//	public void onReceive(Context context, Intent intent) {
+//		String action = intent.getAction();
+//		if (action.equals("com.android.vending.INSTALL_REFERRER")) {
+//
+//			Map<String, String> referralParams = new HashMap<String, String>();
+//
+//			// Return if this is not the right intent.
+//			if (!intent.getAction().equals("com.android.vending.INSTALL_REFERRER")) { //$NON-NLS-1$
+//				return;
+//			}
+//
+//			String referrer = intent.getStringExtra("referrer"); //$NON-NLS-1$
+//			if (referrer == null || referrer.length() == 0) {
+//				return;
+//			}
+//
+//			// Parse the query string, extracting the relevant data
+//			String[] params = referrer.split("&"); // $NON-NLS-1$
+//			for (String param : params) {
+//				String[] pair = param.split("="); // $NON-NLS-1$
+//				referralParams.put(pair[0], pair[1]);
+//			}
+//
+//			MarketUtils.storeReferralParams(context, referralParams);
+//			// Set Context before using EasyTracker. Note that the SDK will use
+//			// the
+//			// application context.
+//			// EasyTracker.getInstance().setContext(context);
+//			// EasyTracker.getTracker().setCampaign(arg0)
+//			// EasyTracker.getTracker().setReferrer(arg0)
+//
+//			// Pass along to google
+//			// AnalyticsReceiver receiver = new AnalyticsReceiver();
+//			// receiver.onReceive(context, intent);
+//
+//		}
+//
+//		super.onReceive(context, intent);
+//	}
+
 	public static class GoogleCampaignTrackingReceiver extends BroadcastReceiver {
 
 		@Override
@@ -94,15 +135,16 @@ public class MyWidgetProvider extends AppWidgetProvider {
 			}
 
 			MarketUtils.storeReferralParams(context, referralParams);
-			// Set Context before using EasyTracker. Note that the SDK will use the
+			// Set Context before using EasyTracker. Note that the SDK will use
+			// the
 			// application context.
-//			 EasyTracker.getInstance().setContext(context);
-//			 EasyTracker.getTracker().setCampaign(arg0)
-//			 EasyTracker.getTracker().setReferrer(arg0)
+			// EasyTracker.getInstance().setContext(context);
+			// EasyTracker.getTracker().setCampaign(arg0)
+			// EasyTracker.getTracker().setReferrer(arg0)
 
 			// Pass along to google
-//			AnalyticsReceiver receiver = new AnalyticsReceiver();
-//			receiver.onReceive(context, intent);
+			// AnalyticsReceiver receiver = new AnalyticsReceiver();
+			// receiver.onReceive(context, intent);
 		}
 	}
 }

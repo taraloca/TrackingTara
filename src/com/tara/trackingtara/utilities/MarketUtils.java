@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 
 public class MarketUtils {
-	private static final String DEBUG_TAG = "Flagship/MarketUtilties";
+	private static final String DEBUG_TAG = "TRACKING_TARA/MarketUtilties";
 	private static final String GOOGLE_PLATINUM = "com.accuweather.paid.android";
 	public static final String GOOGLE_FREE = "com.accuweather.android";
 	private static final String AMAZON_PLATINUM = "com.accuweather.amazon.paid.android";
@@ -30,7 +30,7 @@ public class MarketUtils {
 		String referrerUrl = REFERRER + Constants.ReferrerParameters.WithMarkup.UTM_SOURCE + utm_source_value
 				+ Constants.ReferrerParameters.WithMarkup.UTM_MEDIUM + utm_medium_value
 				+ Constants.ReferrerParameters.WithMarkup.UTM_CAMPAIGN + utm_campaign_value;
-		Logger.i(context, referrerUrl);
+		Logger.i(DEBUG_TAG, "createReferrer() url is " + referrerUrl);
 		return referrerUrl;
 	}
 

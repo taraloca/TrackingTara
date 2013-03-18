@@ -18,6 +18,7 @@ import com.tara.trackingtara.utilities.MarketUtils;
 import com.tara.trackingtara.utilities.PartnerCoding;
 
 public class MainActivity extends Activity {
+	private static final String DEBUG_TAG = "TRACKING_TARA/MainActivity";
 	private boolean mIsFromLite = false;
 	private MainActivity mSelf;
 	private TextView mUtmSource;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Logger.i(this, "onCreate()");
+		Logger.i(DEBUG_TAG, "onCreate()");
 		mSelf = this;
 		
 	}
@@ -43,11 +44,12 @@ public class MainActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		Logger.i(this, "onStart()");
+		Logger.i(DEBUG_TAG, "onStart()");
 		EasyTracker.getInstance().setContext(mSelf);
 		EasyTracker.getTracker().trackView(getClass().getSimpleName());
 		Map<String, String> retrieveReferralParams = MarketUtils.retrieveReferralParams(this);
 		// if (true) {
+		Logger.i(DEBUG_TAG, "referralParams isEmpty? " + Boolean.toString(retrieveReferralParams.isEmpty()));
 		if (!retrieveReferralParams.isEmpty()) {
 			if (!PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 					Constants.Preferences.AL_REPORTED_GOOGLE_ANALYTICS, false)) {
@@ -56,7 +58,7 @@ public class MainActivity extends Activity {
 				String utmMedium = retrieveReferralParams.get(Constants.ReferrerParameters.WithoutMarkup.UTM_MEDIUM);
 				String utmCampaign = retrieveReferralParams
 						.get(Constants.ReferrerParameters.WithoutMarkup.UTM_CAMPAIGN);
-				Logger.i(this, "utmSource = " + utmSource + " utmMedium = " + utmMedium + " utmCampaign " + utmCampaign);
+				Logger.i(DEBUG_TAG, "utmSource = " + utmSource + " utmMedium = " + utmMedium + " utmCampaign " + utmCampaign);
 
 				Map<String, String> params = MarketUtils.retrieveReferralParams(mSelf);
 				String campaign = null;
@@ -92,7 +94,7 @@ public class MainActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 		EasyTracker.getInstance().activityStop(this);
-		Logger.i(this, "partner code in TrackingTara is %s", PartnerCoding.getPartnerCode(mSelf));
+		Logger.i(DEBUG_TAG, "onStop() partner code in TrackingTara is %s", PartnerCoding.getPartnerCode(mSelf));
 	}
 
 	private void init() {
