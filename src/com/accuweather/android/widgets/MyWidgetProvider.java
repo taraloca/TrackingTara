@@ -15,10 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.google.analytics.tracking.android.AnalyticsReceiver;
 import com.tara.trackingtara.R;
-import com.tara.trackingtara.R.id;
-import com.tara.trackingtara.R.layout;
 import com.tara.trackingtara.utilities.Logger;
 import com.tara.trackingtara.utilities.MarketUtils;
 
@@ -95,7 +92,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
     // super.onReceive(context, intent);
     // }
 
-    public static class GoogleCampaignTrackingReceiver extends AnalyticsReceiver {
+    public static class GoogleCampaignTrackingReceiver extends BroadcastReceiver {
 	// Debug tag
 	public static final String DEBUG_TAG = "TRACKING TARA/GoogleCampaignTackingReceiver";
 

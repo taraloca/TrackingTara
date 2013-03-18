@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		GoogleCampaignTrackingReceiver.handleAnalytics(this, getIntent());
 		setContentView(R.layout.activity_main);
 		Logger.i(DEBUG_TAG, "onCreate()");
 		mSelf = this;
