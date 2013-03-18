@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tara.trackingtara"
-    android:versionCode="8"
-    android:versionName="1.6" >
+    android:versionCode="9"
+    android:versionName="1.7" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -27,10 +27,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="MyWidgetProvider" >
+        <receiver android:name="com.accuweather.android.widgets.MyWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            <!--     <action android:name="com.android.vending.INSTALL_REFERRER" /> forgot to remove for 1.5--> 
+            <!--     <action android:name="com.android.vending.INSTALL_REFERRER" /> -->
             </intent-filter>
 
             <meta-data
@@ -41,23 +41,14 @@
         <!-- Used for install referral measurement -->
         <service android:name="com.google.analytics.tracking.android.CampaignTrackingService" />
 
-        <!-- 1.4 -->
-        <!-- <receiver
-            android:name="MyWidgetProvider$GoogleCampaignTrackingReceiver"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver> -->
-        
-         <!-- 1.6 -->
-        <receiver
-            android:name="com.google.analytics.tracking.android.CampaignTrackingReceiver"
+       <receiver
+            android:name="com.accuweather.android.widgets.MyWidgetProvider$GoogleCampaignTrackingReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+        
         
     </application>
 
