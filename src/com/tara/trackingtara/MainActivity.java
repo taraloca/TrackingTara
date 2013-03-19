@@ -46,8 +46,11 @@ public class MainActivity extends Activity {
 	public void onStart() {
 		super.onStart();
 		Logger.i(DEBUG_TAG, "onStart()");
-		EasyTracker.getInstance().setContext(mSelf);
-		EasyTracker.getTracker().trackView(getClass().getSimpleName());
+		EasyTracker.getInstance().activityStart(this);
+		
+		// from 1.11
+//		EasyTracker.getInstance().setContext(mSelf);
+//		EasyTracker.getTracker().trackView(getClass().getSimpleName());
 		Map<String, String> retrieveReferralParams = MarketUtils.retrieveReferralParams(this);
 		// if (true) {
 		Logger.i(DEBUG_TAG, "referralParams isEmpty? " + Boolean.toString(retrieveReferralParams.isEmpty()));
