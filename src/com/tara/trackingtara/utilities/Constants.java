@@ -30,6 +30,10 @@ public class Constants {
 			public static final String PRELOAD_CITY = "349727";
 		}
 	}
+	
+	 public static class Actions {
+		public static final String GET_FULL_APP = "com.accuweather.android.action.GET_FULL_APP";
+	    }
 
 	public static class ReferrerParameters {
 		public static class WithMarkup {
@@ -57,6 +61,7 @@ public class Constants {
 		public static final String AL_REPORTED_GOOGLE_ANALYTICS = "al_reported_google_analytics";
 		public static final String PREF_PARTNER_CODE = "pref_p_code";
 		public static final String REFERRER_PREFS_NAME = "referral_params";
+		public static final String IS_FROM_ANDROID_LITE = "is_from_android_lite";
 
 		public static class LaunchModes {
 			public static final String CURRENT = "0";

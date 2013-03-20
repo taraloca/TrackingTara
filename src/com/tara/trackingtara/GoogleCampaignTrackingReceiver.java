@@ -39,6 +39,7 @@ public class GoogleCampaignTrackingReceiver extends BroadcastReceiver {
 
 	// Return if this is not the right intent.
 	if (!intent.getAction().equals("com.android.vending.INSTALL_REFERRER")) { //$NON-NLS-1$
+	    Logger.i(DEBUG_TAG, "intent doesnt equal INSTALL REFERRER");
 	    return;
 	}
 
