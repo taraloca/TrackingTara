@@ -55,8 +55,10 @@ public class MainActivity extends Activity {
 
 	    // Call setContext() here so that we can access EasyTracker to
 	    // update campaign information before activityStart() is called.
+	    PartnerCoding.checkPartnerCode(mSelf);
+	    
 	    EasyTracker.getInstance().setContext(mSelf);
-	    EasyTracker.getTracker().setCampaign("android_lite_" + PartnerCoding.getPartnerCode(mSelf));
+	    EasyTracker.getTracker().setCampaign("ANDROID_LITE_" + PartnerCoding.getPartnerCode(mSelf));
 	    PreferenceManager.getDefaultSharedPreferences(this).edit()
 		    .putBoolean(Constants.Preferences.IS_FROM_ANDROID_LITE, false).commit();
 	}

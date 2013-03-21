@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 
 public class PartnerCoding {
+    private static final String DEBUG_TAG = "TRACKING_TARA/PartnerCoding";
     public static final String PARTNER_CODE_DELIMITER = "#@!@";
     public static String AD_SERVER_URL_TEST = "http://adserver-demo.amobee.com/upsteed/wap/adrequest"; // Amobee
 												       // test
@@ -88,7 +89,7 @@ public class PartnerCoding {
 
 	public static final String ACER_PARTNER_CODE = "androidacer";
 
-	public static final String PARTNER_CODE = GOOGLE_PARTNER_CODE;
+	public static final String PARTNER_CODE = "androidlitetrackingtara";
 
     }
 
@@ -203,6 +204,7 @@ public class PartnerCoding {
 		// //TODO
 		// Comment out for production
 		pcode = getPartnerCode(context);
+
 		if (pcode == null) {
 		    sp.edit()
 			    .putString(Constants.Preferences.PREF_PARTNER_CODE, PartnerCoding.PartnerCodes.PARTNER_CODE)
@@ -224,6 +226,8 @@ public class PartnerCoding {
 			}
 		    }
 		} else if (externalStorageAvailable) {
+		    file = new File(externalPath.getAbsolutePath() + "/Android/data/" + packageName);
+		    file.mkdirs();
 		    file = new File(externalPath.getAbsolutePath() + "/Android/data/" + packageName + "/",
 			    PartnerCoding.PartnerCodes.PARTNER_CODE_FILE_NAME);
 		    try {
