@@ -16,7 +16,6 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 
 public class PartnerCoding {
-    private static final String DEBUG_TAG = "TRACKING_TARA/PartnerCoding";
     public static final String PARTNER_CODE_DELIMITER = "#@!@";
     public static String AD_SERVER_URL_TEST = "http://adserver-demo.amobee.com/upsteed/wap/adrequest"; // Amobee
 												       // test
@@ -184,12 +183,12 @@ public class PartnerCoding {
 	    // to know is we can neither read nor write
 	    externalStorageAvailable = false;
 	}
-	// Logger.d(DEBUG_TAG, "External Storage is available = " +
+	// Logger.d(this, "External Storage is available = " +
 	// externalStorageAvailable);
 	if (externalStorageAvailable) {
 	    try {
 		// composed path for 2.1 compatability
-		// Logger.d(DEBUG_TAG, "External path is " +
+		// Logger.d(this, "External path is " +
 		// context.getExternalFilesDir(null) + "/" +
 		// Constants.PartnerCodes.PARTNER_CODE_FILE_NAME);
 		fis = new FileInputStream(externalPath.getAbsolutePath() + "/Android/data/" + packageName + "/"
@@ -255,7 +254,7 @@ public class PartnerCoding {
 		// fis = new FileInputStream(externalPath.getAbsolutePath() +
 		// "/Android/data/" + packageName + "/" +
 		// Constants.PartnerCodes.PARTNER_CODE_FILE_NAME);
-		// Logger.d(DEBUG_TAG, "File directory is " +
+		// Logger.d(this, "File directory is " +
 		// context.getFilesDir());
 		fis = new FileInputStream(context.getFilesDir() + "/"
 			+ PartnerCoding.PartnerCodes.PARTNER_CODE_FILE_NAME);

@@ -93,12 +93,10 @@ public class MyWidgetProvider extends AppWidgetProvider {
     // }
 
     public static class GoogleCampaignTrackingReceiver extends BroadcastReceiver {
-	// Debug tag
-	public static final String DEBUG_TAG = "TRACKING TARA/GoogleCampaignTackingReceiver";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-	    Logger.i(DEBUG_TAG, "onReceive GoogleCampaignTrackingReceiver");
+	    Logger.i(this, "onReceive GoogleCampaignTrackingReceiver");
 	    Bundle extras = intent.getExtras();
 
 	    // Workaround for Android security issue:
@@ -120,7 +118,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
 	    }
 
 	    String referrer = intent.getStringExtra("referrer"); //$NON-NLS-1$
-	    Logger.i(DEBUG_TAG, "referrer from intent is %s", referrer);
+	    Logger.i(this, "referrer from intent is %s", referrer);
 	    if (referrer == null || referrer.length() == 0) {
 		return;
 	    }

@@ -20,7 +20,6 @@ import com.tara.trackingtara.utilities.MarketUtils;
 import com.tara.trackingtara.utilities.PartnerCoding;
 
 public class MainActivity extends Activity {
-    private static final String DEBUG_TAG = "TRACKING_TARA/MainActivity";
     private MainActivity mSelf;
     private TextView mUtmSource;
     private TextView mUtmMedium;
@@ -30,21 +29,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_main);
-	Logger.i(DEBUG_TAG, "onCreate()");
+	Logger.i(this, "onCreate()");
 	mSelf = this;
 
 	boolean isFromAndroidLite = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
 		Constants.Preferences.IS_FROM_ANDROID_LITE, false);
 
-	// / report to GA
-
-	// set pref to false
-
-	Logger.i(DEBUG_TAG, "isFromAndroidLite %s with partner code %s", Boolean.toString(isFromAndroidLite),
-		PartnerCoding.getPartnerCode(mSelf));
-	// Get the intent that started this Activity.
-	Intent intent = this.getIntent();
-	Uri uri = intent.getData();
 	if (isFromAndroidLite) {
 	    Toast.makeText(this, "you made it to the full application", Toast.LENGTH_LONG).show();
 	    // Vibrate the phone
@@ -56,11 +46,17 @@ public class MainActivity extends Activity {
 	    // Call setContext() here so that we can access EasyTracker to
 	    // update campaign information before activityStart() is called.
 	    PartnerCoding.checkPartnerCode(mSelf);
-	    
+
 	    EasyTracker.getInstance().setContext(mSelf);
-	    EasyTracker.getTracker().setCampaign("ANDROID_LITE_" + PartnerCoding.getPartnerCode(mSelf));
+	    EasyTracker
+		    .getTracker()
+		    .setCampaign(
+			    "utm_campaign=androidlite_campaign_v20&utm_source=androidlite_source_v20&utm_medium=androidlite_medium_v20&utm_term=androidlite_term_v20&utm_content=androidlite_content_v20");
 	    PreferenceManager.getDefaultSharedPreferences(this).edit()
 		    .putBoolean(Constants.Preferences.IS_FROM_ANDROID_LITE, false).commit();
+	    
+	    Logger.i(this, "isFromAndroidLite %s with partner code %s", Boolean.toString(isFromAndroidLite),
+			PartnerCoding.getPartnerCode(mSelf));
 	}
 	init();
 
@@ -76,16 +72,16 @@ public class MainActivity extends Activity {
     @Override
     public void onStart() {
 	super.onStart();
-	Logger.i(DEBUG_TAG, "onStart()");
+	Logger.i(this, "onStart()");
 	EasyTracker.getInstance().activityStart(this);
-	
+
     }
 
     @Override
     protected void onStop() {
 	super.onStop();
 	EasyTracker.getInstance().activityStop(this);
-	Logger.i(DEBUG_TAG, "onStop() partner code in TrackingTara is %s", PartnerCoding.getPartnerCode(mSelf));
+	Logger.i(this, "onStop() partner code in TrackingTara is %s", PartnerCoding.getPartnerCode(mSelf));
     }
 
     private void init() {
